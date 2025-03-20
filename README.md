@@ -1,6 +1,6 @@
 # Task Manager
 
-A simple yet stylish Task Manager built using **React, Tailwind CSS, and GSAP** for smooth animations. This app allows users to add, toggle, and delete tasks seamlessly.
+A Task Manager built using **React, Tailwind CSS, and GSAP** for smooth animations. This app allows users to add, toggle, and delete tasks seamlessly.
 
 ## 🚀 Features
 - ✅ Add new tasks with ease
