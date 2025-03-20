@@ -7,7 +7,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
       await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
         method: "PUT",
       });
-      refreshTasks(); // Refresh the list
+      refreshTasks();
     } catch (error) {
       console.error("Error toggling task:", error);
     }
@@ -21,7 +21,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
       if (!response.ok) throw new Error("Failed to delete task");
       
-      refreshTasks(); // Refresh the list
+      refreshTasks(); 
     } catch (error) {
       console.error("Error deleting task:", error);
     }
