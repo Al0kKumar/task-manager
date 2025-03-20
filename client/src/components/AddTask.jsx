@@ -21,7 +21,7 @@ const AddTask = ({ refreshTasks }) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button type="submit" className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800">
+      <button type="submit" className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 cursor-pointer">
         Add
       </button>
     </form>

@@ -1,21 +1,30 @@
-import { FaTrash, FaCheck } from "react-icons/fa";
-
-const TaskItem = ({ task, onDelete, onToggle }) => {
-  return (
-    <div className="mb-3 flex justify-between items-center bg-gray-800 text-white p-3 rounded-lg shadow-md transition hover:scale-105">
-      <span className={`text-lg ${task.completed ? "line-through text-green-400" : ""}`}>
-        {task.title}
-      </span>
-      <div className="flex gap-3">
-        <button onClick={() => onToggle(task._id)} className="p-2 bg-green-600 rounded hover:bg-green-800">
-          <FaCheck />
-        </button>
-        <button onClick={() => onDelete(task._id)} className="p-2 bg-red-600 rounded hover:bg-red-800">
-          <FaTrash />
+const TaskItem = ({ task, onToggle, onDelete }) => {
+    return (
+      <div className="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+        {/* Checkbox for Toggle */}
+        <div className="flex items-center gap-3">
+          <input
+            type="checkbox"
+            checked={task.completed}
+            onChange={onToggle} // Call the toggle function
+            className="w-5 h-5 cursor-pointer accent-green-500"
+          />
+          <span className={`${task.completed ? "line-through text-gray-500" : ""}`}>
+            {task.title}
+          </span>
+        </div>
+  
+        {/* Delete Button */}
+        <button
+          onClick={onDelete} // Call the delete function
+          className="ml-3 p-1  text-white rounded-lg hover: cursor-pointer"
+        >
+          ❌
         </button>
       </div>
-    </div>
-  );
-};
-
-export default TaskItem;
+    );
+  };
+  
+  export default TaskItem;
+  
+  

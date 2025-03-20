@@ -1,15 +1,42 @@
 import TaskItem from "./TaskItem";
 
 const TaskList = ({ tasks, refreshTasks }) => {
+  const handleToggle = async (taskId) => {
+    try {
+        console.log("id is ", taskId);
+      await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+        method: "PUT",
+      });
+      refreshTasks(); // Refresh the list
+    } catch (error) {
+      console.error("Error toggling task:", error);
+    }
+  };
+
+  const handleDelete = async (taskId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Failed to delete task");
+      
+      refreshTasks(); // Refresh the list
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+
   return (
-    <div className="mt-5 w-full max-w-md">
-      {tasks.length > 0 ? (
-        tasks.map((task) => (
-          <TaskItem key={task._id} task={task} refreshTasks={refreshTasks} />
-        ))
-      ) : (
-        <p className="text-gray-400 text-center">No tasks yet! Add one above.</p>
-      )}
+    <div className="flex flex-col gap-3 w-full">
+      {tasks.map((task) => (
+        <TaskItem
+          key={task._id}
+          task={task}
+          onToggle={() => handleToggle(task._id)}
+          onDelete={() => handleDelete(task._id)}
+        />
+      ))}
     </div>
   );
 };
