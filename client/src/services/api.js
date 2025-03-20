@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://task-manager-fcev.onrender.com"; 
+const API_BASE_URL="https://task-manager-fcev.onrender.com"; 
 
 export const getTasks = async () => {
   const response = await axios.get(`${API_BASE_URL}/api/tasks`);
@@ -9,9 +9,12 @@ export const getTasks = async () => {
 
 export const addTask = async (title) => {
   await axios.post(`${API_BASE_URL}/api/tasks`, { title });
-
 };
 
+export const toggleTask = async (taskId) => {
+  await axios.put(`${API_BASE_URL}/api/tasks/${taskId}`);
+};
 
-export default API_URL
-
+export const deleteTask = async (taskId) => {
+  await axios.delete(`${API_BASE_URL}/api/tasks/${taskId}`);
+};

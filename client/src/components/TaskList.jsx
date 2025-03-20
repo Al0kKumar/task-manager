@@ -1,10 +1,11 @@
 import TaskItem from "./TaskItem";
+import { toggleTask, deleteTask } from "../services/api";
 
 const TaskList = ({ tasks, refreshTasks }) => {
   const handleToggle = async (taskId) => {
     try {
         console.log("id is ", taskId);
-        const response = await axios.put(`${API_BASE_URL}/api/tasks/${taskId}`);
+        await toggleTask(taskId); 
       refreshTasks();
     } catch (error) {
       console.error("Error toggling task:", error);
@@ -13,10 +14,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
   const handleDelete = async (taskId) => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/api/tasks/${taskId}`);
-
-      if (!response.ok) throw new Error("Failed to delete task");
-      
+        await deleteTask(taskId);
       refreshTasks(); 
     } catch (error) {
       console.error("Error deleting task:", error);
