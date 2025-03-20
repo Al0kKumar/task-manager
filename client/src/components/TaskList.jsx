@@ -4,9 +4,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
   const handleToggle = async (taskId) => {
     try {
         console.log("id is ", taskId);
-      await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
-        method: "PUT",
-      });
+        const response = await axios.put(`${API_BASE_URL}/api/tasks/${taskId}`);
       refreshTasks();
     } catch (error) {
       console.error("Error toggling task:", error);
@@ -15,9 +13,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
   const handleDelete = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
-        method: "DELETE",
-      });
+        const response = await axios.delete(`${API_BASE_URL}/api/tasks/${taskId}`);
 
       if (!response.ok) throw new Error("Failed to delete task");
       
